@@ -1,3 +1,7 @@
+import 'package:demo_app_provider/utils/routes/routes.dart';
+import 'package:demo_app_provider/utils/routes/routes_name.dart';
+import 'package:demo_app_provider/view/home_screen.dart';
+import 'package:demo_app_provider/view_model/auth_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,17 +15,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [],
-        child: Builder(builder: (BuildContext context) {
-          return MaterialApp(
-            theme: ThemeData(
-                appBarTheme: AppBarTheme(backgroundColor: Colors.yellow)),
-            darkTheme: ThemeData(
-                brightness: Brightness.dark,
-                appBarTheme: AppBarTheme(backgroundColor: Colors.lightBlue)),
-            title: 'Flutter Demo',
-          );
-        }));
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => AuthViewModel(),
+        )
+      ],
+      child: MaterialApp(
+        theme:
+            ThemeData(appBarTheme: AppBarTheme(backgroundColor: Colors.yellow)),
+        darkTheme: ThemeData(
+            brightness: Brightness.dark,
+            appBarTheme: AppBarTheme(backgroundColor: Colors.lightBlue)),
+        title: 'Flutter Demo',
+        initialRoute: RoutesName.login,
+        onGenerateRoute: Routes.generateRoute,
+        home: HomeScreen(),
+      ),
+    );
   }
 }
 

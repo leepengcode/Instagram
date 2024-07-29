@@ -19,5 +19,5 @@ class BadRequestException extends AppExeaption {
 
 class UnaThorisedException extends AppExeaption {
   UnaThorisedException([String? message])
-      : super(message, 'UnaThorised request');
+      : super(message, 'Unathorised request');
 }
