@@ -6,14 +6,14 @@ import 'package:demo_app_provider/view_model/auth_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   ValueNotifier<bool> _obcurtext = ValueNotifier(false);
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -105,8 +105,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 50,
               ),
               RoundButton(
-                title: "LOGIN",
-                loading: authViewModel.loading,
+                title: "SIGNUP",
+                loading: authViewModel.sigUploading,
                 onTap: () {
                   if (_emailController.text.isEmpty) {
                     Utils.flushBarErrorMessage("Please enter email", context);
@@ -117,16 +117,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     Utils.flushBarErrorMessage(
                         "Password must be 6 digits", context);
                   } else {
-                    // Map data = {
-                    //   'email': _emailController.text.toString(),
-                    //   'password': _passwordController.text.toString()
-                    // };
-
                     Map data = {
-                      'email': 'eve.holt@reqres.in',
-                      'password': 'cityslicka'
+                      'email': _emailController.text.toString(),
+                      'password': _passwordController.text.toString()
                     };
-                    authViewModel.loginApi(data, context);
+                    authViewModel.sigUpApi(data, context);
                     print("Api");
                   }
                 },
@@ -138,15 +133,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Don't have an account? ",
+                    "Already have an account? ",
                     style: TextStyle(color: Colors.black),
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, RoutesName.signup);
+                      Navigator.pushNamed(context, RoutesName.login);
                     },
                     child: Text(
-                      "SIGNUP",
+                      "LOGIN",
                       style: TextStyle(color: Colors.black),
                     ),
                   ),
