@@ -23,8 +23,14 @@ class NetworkApiServicse extends BaseApiServices {
   Future getGetApiResponse(String url) async {
     dynamic resJson;
     try {
-      final res =
-          await http.get(Uri.parse(url)).timeout(const Duration(seconds: 10));
+      final res = await http.get(
+        Uri.parse(url),
+        headers: {
+          'x-rapidapi-host': 'imdb-top-100-movies.p.rapidapi.com',
+          'x-rapidapi-key':
+              '612a7cf2a1mshd5e881e2654c355p11e7adjsn5ea725fab0cc',
+        },
+      ).timeout(const Duration(seconds: 10));
       resJson = returnResponse(res);
     } on SocketException {
       throw FetchDataException('No Internet Connection');

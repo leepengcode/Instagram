@@ -7,4 +7,5 @@ class RoutesName {
 
   //Home Screen routes nmae
   static const String home = 'home_screen';
+  static const String movie = 'movie_screen';
 }

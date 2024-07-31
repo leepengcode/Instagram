@@ -1,6 +1,8 @@
+import 'package:demo_app_provider/model/movie_model.dart';
 import 'package:demo_app_provider/utils/routes/routes_name.dart';
 import 'package:demo_app_provider/view/home_screen.dart';
 import 'package:demo_app_provider/view/login_screen.dart';
+import 'package:demo_app_provider/view/movie_screen.dart';
 import 'package:demo_app_provider/view/signup_screen.dart';
 import 'package:demo_app_provider/view/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +23,12 @@ class Routes {
       case RoutesName.splash:
         return MaterialPageRoute(
             builder: (BuildContext context) => SplashView());
+      case RoutesName.movie:
+        var movie = settings.arguments as MovieListModel;
+        return MaterialPageRoute(
+            builder: (BuildContext context) => MovieScreen(
+                  movie: movie,
+                ));
       default:
         return MaterialPageRoute(builder: (_) {
           return Scaffold(
